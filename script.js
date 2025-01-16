@@ -23,8 +23,8 @@ const divide = (arr, n) => {
     chunks.push(tempChunk);
   }
 
-  return chunks;
+  return chunks; 
 };
- 
-const n = prompt("Enter n: ");
+ const arr = [1, 2, 3, 4, 5];
+const n = parseInt(prompt("Enter n: "), 10);
 alert(JSON.stringify(divide(arr, n)));
