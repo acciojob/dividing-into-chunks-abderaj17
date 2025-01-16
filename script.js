@@ -9,9 +9,10 @@ const divide = (arr, n) => {
       tempChunk.push(arr[i]);
       tempSum += arr[i];
     } else {
-      // Otherwise, finalize the current chunk
-      chunks.push(tempChunk);
-      // Start a new chunk with the current element
+      // Otherwise, finalize the current chunk and start a new chunk
+      if(tempChunk.length > 0) {
+        chunks.push(tempChunk); 
+      }
       tempChunk = [arr[i]];
       tempSum = arr[i];
     }
@@ -21,9 +22,9 @@ const divide = (arr, n) => {
   if (tempChunk.length > 0) {
     chunks.push(tempChunk);
   }
-
+ 
   return chunks;
 };
- const arr = [1, 2, 3, 4, 5];
+ const arr = [1, 2, 3, 4, 1, 0, 2, 2];
 const n = parseInt(prompt("Enter n: "), 10);
 alert(JSON.stringify(divide(arr, n)));
