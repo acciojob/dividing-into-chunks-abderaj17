@@ -1,29 +1,28 @@
 const divide = (arr, n) => {
-  let chunks = []; // This will hold our final chunks
-  let tempChunk = []; // This will hold our temporary chunk
-  let tempSum = 0; // This will hold the sum of the elements in the temporary chunk
+  let chunks = []; // List of subarrays
+  let tempChunk = []; // Temporary subarray to build chunks
+  let tempSum = 0; // Running sum of the current chunk
 
   for (let i = 0; i < arr.length; i++) {
-    tempChunk.push(arr[i]); // Add the current element to the temporary chunk
-    tempSum += arr[i]; // Update the sum
-
-    // If the sum exceeds 'n', we need to start a new chunk
-    if (tempSum > n) {
-      tempChunk.pop(); // Remove the last element from the temporary chunk
-      chunks.push(tempChunk); // Add the temporary chunk to the list of chunks
-
-      // Start a new chunk with the current element and update the sum
+    // If adding the current element keeps the sum ≤ n, add it to the current chunk
+    if (tempSum + arr[i] <= n) {
+      tempChunk.push(arr[i]);
+      tempSum += arr[i];
+    } else {
+      // Otherwise, finalize the current chunk
+      chunks.push(tempChunk);
+      // Start a new chunk with the current element
       tempChunk = [arr[i]];
       tempSum = arr[i];
     }
   }
 
-  // After the iteration, if there is a chunk left, add it to the list of chunks
+  // If there are remaining elements in tempChunk, add them to chunks
   if (tempChunk.length > 0) {
     chunks.push(tempChunk);
   }
 
-  return chunks; 
+  return chunks;
 };
  const arr = [1, 2, 3, 4, 5];
 const n = parseInt(prompt("Enter n: "), 10);
